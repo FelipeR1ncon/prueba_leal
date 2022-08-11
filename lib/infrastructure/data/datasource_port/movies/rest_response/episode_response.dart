@@ -28,7 +28,7 @@ class EpisodeResponse {
       voteAverage: map['vote_average'] as double,
       overview: map['overview'] as String,
       guestStart: List<GuestStartResponse>.from(
-        (map['guest_stars'] as List<int>).map<GuestStartResponse>(
+        (map['guest_stars'] as Iterable).map<GuestStartResponse>(
           (x) => GuestStartResponse.fromMap(x as Map<String, dynamic>),
         ),
       ),

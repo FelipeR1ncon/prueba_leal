@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/const_rest.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/http_client.dart';
 import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_movie_datasource_port.dart';
@@ -15,65 +16,90 @@ class RestMovieDatasource implements RestMovieDatasourcePort {
 
   @override
   Future<MovieDetailResponse> getDetail(int idMovie) async {
-    var response = await _htppClient.get(urlRequest: idMovie);
+    try {
+      Response response = await _htppClient.get(urlRequest: idMovie.toString());
 
-    return MovieDetailResponse.fromJson(json.decode(response.body));
+      return MovieDetailResponse.fromMap(response.data);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<EpisodeResponse> getEpisode(
       int idMovie, int numSeason, int numEpisode) async {
-    var response = await _htppClient.get(
-        urlRequest:
-            "idMovie${ConstRest.getSeason}/$numSeason${ConstRest.getEpisode}$numEpisode");
+    try {
+      Response response = await _htppClient.get(
+          urlRequest:
+              "$idMovie${ConstRest.getSeason}/$numSeason${ConstRest.getEpisode}$numEpisode");
 
-    return EpisodeResponse.fromJson(json.decode(response.body));
+      return EpisodeResponse.fromMap(response.data);
+    } catch (e) {
+      rethrow;
+    }
   }
 
+  //Check
   @override
   Future<List<MovieResponse>> getPopular(int page) async {
-    List<MovieResponse> movies;
-    var response = await _htppClient
-        .get(urlRequest: ConstRest.getPopularMovies, params: {"page": page});
+    try {
+      Response response = await _htppClient
+          .get(urlRequest: ConstRest.getPopularMovies, params: {"page": page});
 
-    movies = (json.decode(response.body) as List)
-        .map((i) => MovieResponse.fromJson(i))
-        .toList();
+      Iterable moviesResponse = response.data["results"];
 
-    return movies;
+      List<MovieResponse> movies = List<MovieResponse>.from(
+          moviesResponse.map((data) => MovieResponse.fromMap(data)));
+
+      return movies;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<List<MovieResponse>> getRecommendations(int page) async {
-    List<MovieResponse> movies;
-    var response = await _htppClient.get(
+    Response response = await _htppClient.get(
         urlRequest: ConstRest.getRecomentationsMovies, params: {"page": page});
 
-    movies = (json.decode(response.body) as List)
-        .map((i) => MovieResponse.fromJson(i))
-        .toList();
+    try {
+      Iterable moviesResponse = response.data["results"];
 
-    return movies;
+      List<MovieResponse> movies = List<MovieResponse>.from(
+          moviesResponse.map((data) => MovieResponse.fromMap(data)));
+
+      return movies;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<SeasonResponse> getSeason(int idMovie, int numSeason) async {
-    var response = await _htppClient.get(
-        urlRequest: "idMovie${ConstRest.getSeason}numSeason");
+    try {
+      Response response = await _htppClient.get(
+          urlRequest: "$idMovie${ConstRest.getSeason}$numSeason");
 
-    return SeasonResponse.fromJson(json.decode(response.body));
+      return SeasonResponse.fromMap(response.data);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
   Future<List<MovieResponse>> getTvAiringToday(int page) async {
-    List<MovieResponse> movies;
-    var response = await _htppClient.get(
-        urlRequest: ConstRest.getTvAiringTodayMovies, params: {"page": page});
+    try {
+      Response response = await _htppClient.get(
+          urlRequest: ConstRest.getTvAiringTodayMovies, params: {"page": page});
 
-    movies = (json.decode(response.body) as List)
-        .map((i) => MovieResponse.fromJson(i))
-        .toList();
+      Iterable moviesResponse = response.data["results"];
 
-    return movies;
+      List<MovieResponse> movies = List<MovieResponse>.from(
+          moviesResponse.map((data) => MovieResponse.fromMap(data)));
+
+      return movies;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

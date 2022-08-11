@@ -8,6 +8,7 @@ import 'package:prueba_leal/domain/model/port/out/movies/movie_repository_port.d
 
 class MovieUseCase implements MovieUseCasePort {
   final MovieRepositoryPort _movieRepositoryPort;
+
   // ignore: prefer_final_fields
   late Map<User, List<Movie>> _favoriteMovies;
 
@@ -59,5 +60,10 @@ class MovieUseCase implements MovieUseCasePort {
   @override
   Future<List<Movie>> getTvAiringToday(int page) {
     return _movieRepositoryPort.getTvAiringToday(page);
+  }
+
+  @override
+  Future<Movie> getDetails(Movie movie) {
+    return _movieRepositoryPort.getDetail(movie);
   }
 }

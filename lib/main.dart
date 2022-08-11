@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'di/injection.dart';
-import 'presentation/movies/home/features/Home/presentation/movies/pages/home/home_page.dart';
+import 'presentation/movies/home/home_page.dart';
 
 void main() {
   setupInjectionDependency();

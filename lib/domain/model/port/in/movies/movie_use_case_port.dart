@@ -10,6 +10,8 @@ abstract class MovieUseCasePort {
 
   Future<Season> getSeason(int idMovie, int numSeason);
 
+  Future<Movie> getDetails(Movie movie);
+
   clearData();
 
   Future<Episode> getEpisode(int idMovie, int numSeason, int numEpisode);
@@ -17,6 +19,8 @@ abstract class MovieUseCasePort {
   Future<List<Movie>> getTvAiringToday(int page);
 
   List<Movie> getFavorites(User user);
+
+
 
   void addFavorite(User user, Movie movie);
 }

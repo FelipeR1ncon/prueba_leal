@@ -53,9 +53,9 @@ class MovieRepository implements MovieRepositoryPort {
   Movie _createMovieDomainFromData(MovieResponse data) {
     return Movie(
         id: data.id,
-        originalName: data.originalName,
-        backdropPath: data.backdropPath,
-        posterPath: data.posterPath,
+        originalName: data.name,
+        backdropPath: data.backdropPath ?? "",
+        posterPath: data.posterPath ?? "",
         voteAverage: data.voteAverage);
   }
 
@@ -93,7 +93,7 @@ class MovieRepository implements MovieRepositoryPort {
   @override
   Future<List<Movie>> getTvAiringToday(int page) async {
     return _createListMovieFromListData(
-        await _restMovieDatasourcePort.getRecommendations(page));
+        await _restMovieDatasourcePort.getTvAiringToday(page));
   }
 
   @override

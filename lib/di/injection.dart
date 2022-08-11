@@ -6,8 +6,8 @@ import 'package:prueba_leal/infrastructure/data/datasource/http_client.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_movie_datasource.dart';
 import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_movie_datasource_port.dart';
 import 'package:prueba_leal/infrastructure/respository/movies/movie_repository.dart';
-import 'package:prueba_leal/presentation/movies/home/features/Home/presentation/movies/pages/home/cubit/home_cubit.dart';
-import 'package:prueba_leal/presentation/movies/home/features/Home/presentation/movies/pages/home/home_page.dart';
+import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
+import 'package:prueba_leal/presentation/movies/home/home_page.dart';
 
 final sl = GetIt.I;
 

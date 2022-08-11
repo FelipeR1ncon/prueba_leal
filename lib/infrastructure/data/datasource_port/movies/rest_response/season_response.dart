@@ -18,9 +18,8 @@ class SeasonResponse {
     return SeasonResponse(
       seasonNumber: map['season_number'] as int,
       overview: map['overview'] as String,
-      episodesResponse: List<EpisodeResponse>.from(
-        (map['episodes'] as List<int>).map<EpisodeResponse>(
-          (x) => EpisodeResponse.fromMap(x as Map<String, dynamic>),
+      episodesResponse: List<EpisodeResponse>.from((map['episodes'] as Iterable).map<EpisodeResponse>(
+          (data) => EpisodeResponse.fromMap(data),
         ),
       ),
     );
