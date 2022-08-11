@@ -16,6 +16,6 @@ class LocalTextStyle {
       fontFamily: fontFamilyGilroy,
       height: 1.5,
       fontSize: _sizeEmphasis,
-      fontWeight: fontWeightRegular,
-      color: LocalColor.amarillo);
+      fontWeight: FontWeight.w300,
+      color: LocalColor.negro);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prueba_leal/presentation/shared/widgets/fille_button.dart';
 
 import 'cubit/home_cubit.dart';
 
@@ -19,8 +20,15 @@ class _HomeState extends State<HomePage> {
       body: BlocBuilder<HomeCubit, HomeState>(
         bloc: widget.homeCubit,
         builder: (context, state) {
-          return Center(
-            child: Text(state.recommendedMovies?.length.toString() ?? "0"),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FilledButton(text: "Sign up", onPressed: () {}, isPrimary: true),
+              const SizedBox(
+                height: 8,
+              ),
+              FilledButton(text: "Log in", onPressed: () {}, isPrimary: false)
+            ],
           );
         },
       ),

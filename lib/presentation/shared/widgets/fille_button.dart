@@ -8,7 +8,9 @@ class FilledButton extends StatelessWidget {
       {Key? key,
       required this.text,
       required this.onPressed,
-      this.isPrimary = true})
+      this.isPrimary = true,
+      this.height = 48,
+      this.textStyle = LocalTextStyle.buttonText})
       : super(key: key);
 
   ///Texto a mostrar en el boton
@@ -16,7 +18,14 @@ class FilledButton extends StatelessWidget {
 
   ///Funcion que se ejecuta cuando se presiona el boton
   final Function onPressed;
+
+  ///Si es true toma el estilo del boton primario con el fondo amarillo, en el caso
+  ///contrario el fonto sera blanco
   final bool isPrimary;
+  final double height;
+
+  ///Estilo del trexto que se muestra en el botton
+  final TextStyle textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +36,10 @@ class FilledButton extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all(
                 isPrimary ? LocalColor.amarillo : LocalColor.blanco)),
         onPressed: onPressed.call(),
-        child: Center(
-            child: Text(text,
-                style: LocalTextStyle.buttonText,
-                textAlign: TextAlign.center)));
+        child: SizedBox(
+          height: height,
+          child: Center(
+              child: Text(text, style: textStyle, textAlign: TextAlign.center)),
+        ));
   }
 }
