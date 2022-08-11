@@ -3,7 +3,7 @@ import 'package:prueba_leal/domain/model/entity/movie/episode.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
 import 'package:prueba_leal/domain/model/entity/movie/season.dart';
 import 'package:prueba_leal/domain/model/port/in/movies/movie_use_case_port.dart';
-import 'package:prueba_leal/domain/model/port/in/sesion/user.dart';
+import 'package:prueba_leal/domain/model/entity/user.dart';
 import 'package:prueba_leal/domain/model/port/out/movies/movie_repository_port.dart';
 
 import '../../model/entity/movie/movie_availability.dart';

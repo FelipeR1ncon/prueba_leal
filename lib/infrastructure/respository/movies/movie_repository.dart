@@ -6,12 +6,12 @@ import 'package:prueba_leal/domain/model/entity/movie/last_episode_air.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
 import 'package:prueba_leal/domain/model/entity/movie/season.dart';
 import 'package:prueba_leal/domain/model/port/out/movies/movie_repository_port.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_response.dart';
 import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_movie_datasource_port.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/episode_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_detail_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_item_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/season_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/episode_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_detail_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_item_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/season_response.dart';
 
 import '../../../domain/model/entity/movie/movie_availability.dart';
 

@@ -1,4 +1,4 @@
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_item_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_item_response.dart';
 
 class MovieResponse {
   final int page;

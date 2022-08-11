@@ -1,13 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/const_rest.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/http_client.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/episode_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/season_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/episode_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/season_response.dart';
 import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_movie_datasource_port.dart';
-
-import '../../datasource/movies/rest_response/movie_detail_response.dart';
-import '../../datasource/movies/rest_response/movie_item_response.dart';
+import '../../datasource_port/movies/rest_response/movie_detail_response.dart';
+import '../../datasource_port/movies/rest_response/movie_item_response.dart';
 
 ///Clase encargada de trae los datos de la api https://developers.themoviedb.org/3/tv/
 ///a traves del protocolo REST.

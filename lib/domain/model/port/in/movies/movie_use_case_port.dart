@@ -2,7 +2,7 @@ import '../../../entity/movie/episode.dart';
 import '../../../entity/movie/movie.dart';
 import '../../../entity/movie/movie_availability.dart';
 import '../../../entity/movie/season.dart';
-import '../sesion/user.dart';
+import '../../../entity/user.dart';
 
 abstract class MovieUseCasePort {
   Future<MovieAvailability> getPopular(int page);

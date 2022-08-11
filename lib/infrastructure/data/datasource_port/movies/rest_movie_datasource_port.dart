@@ -1,8 +1,8 @@
-import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_response.dart';
 
-import '../../datasource/movies/rest_response/episode_response.dart';
-import '../../datasource/movies/rest_response/movie_detail_response.dart';
-import '../../datasource/movies/rest_response/season_response.dart';
+import '../../datasource_port/movies/rest_response/episode_response.dart';
+import '../../datasource_port/movies/rest_response/movie_detail_response.dart';
+import '../../datasource_port/movies/rest_response/season_response.dart';
 
 abstract class RestMovieDatasourcePort {
   Future<MovieResponse> getPopular(int page);
