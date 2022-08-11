@@ -19,6 +19,7 @@ import 'package:prueba_leal/infrastructure/respository/movies/movie_repository.d
 import 'package:prueba_leal/presentation/login/cubit/login_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/use_case/sesion/session_use_case.dart';
 import '../infrastructure/respository/sesion/session_repository.dart';
@@ -26,7 +27,9 @@ import '../presentation/login/login_page.dart';
 
 final sl = GetIt.I;
 
-void setupInjectionDependency() {
+Future<void> setupInjectionDependency() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+
   ////////// Pages /////////////
   sl.registerFactory(() => HomePage(sl()));
   sl.registerFactory(() => LoginPage(sl()));
@@ -61,4 +64,7 @@ void setupInjectionDependency() {
   ////////// Http client //////////
 
   sl.registerLazySingleton<HttpClient>(() => HttpClient());
+
+  ////////// Preferences //////////
+  sl.registerLazySingleton(() => prefs);
 }

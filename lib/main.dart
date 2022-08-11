@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'di/injection.dart';
 import 'presentation/movies/home/home_page.dart';
 
-void main() {
-  setupInjectionDependency();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+  );
+
+  await setupInjectionDependency();
+
   runApp(const MyApp());
 }
 
