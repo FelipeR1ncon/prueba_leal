@@ -2,7 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/const_rest.dart';
 
 ///Se realiza esta clase para no usar el plugin directamente en las capas superiores
-///asi si este llega a cambiar no tenemos que modificarlas.
+///asi si este llega a cambiar no tenemos que modificarlas y solo se cambiaria
+///esete cliente HTTP.
 class HttpClient {
   late Dio client;
 

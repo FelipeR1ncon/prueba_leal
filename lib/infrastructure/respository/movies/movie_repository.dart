@@ -6,12 +6,17 @@ import 'package:prueba_leal/domain/model/entity/movie/last_episode_air.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
 import 'package:prueba_leal/domain/model/entity/movie/season.dart';
 import 'package:prueba_leal/domain/model/port/out/movies/movie_repository_port.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_response.dart';
 import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_movie_datasource_port.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/episode_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_detail_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/season_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/episode_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_detail_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_item_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/season_response.dart';
 
+import '../../../domain/model/entity/movie/movie_availability.dart';
+
+///Clase encargada de comunicarse con los datasource de peliculas y transformar
+///las respuestas en entidades de dominio.
 class MovieRepository implements MovieRepositoryPort {
   final RestMovieDatasourcePort _restMovieDatasourcePort;
 
@@ -45,31 +50,32 @@ class MovieRepository implements MovieRepositoryPort {
   }
 
   @override
-  Future<List<Movie>> getPopular(int page) async {
+  Future<MovieAvailability> getPopular(int page) async {
     return _createListMovieFromListData(
         await _restMovieDatasourcePort.getPopular(page));
   }
 
-  Movie _createMovieDomainFromData(MovieResponse data) {
+  Movie _createMovieDomainFromData(MovieItemResponse data) {
     return Movie(
         id: data.id,
-        originalName: data.name,
+        name: data.name,
         backdropPath: data.backdropPath ?? "",
         posterPath: data.posterPath ?? "",
         voteAverage: data.voteAverage);
   }
 
-  List<Movie> _createListMovieFromListData(List<MovieResponse> data) {
+  MovieAvailability _createListMovieFromListData(MovieResponse data) {
     List<Movie> movieList = [];
 
-    for (var dataMovie in data) {
+    for (var dataMovie in data.movies) {
       movieList.add(_createMovieDomainFromData(dataMovie));
     }
-    return movieList;
+    return MovieAvailability(
+        page: data.page, totalPages: data.totalPage, movies: movieList);
   }
 
   @override
-  Future<List<Movie>> getRecommendations(int page) async {
+  Future<MovieAvailability> getRecommendations(int page) async {
     return _createListMovieFromListData(
         await _restMovieDatasourcePort.getRecommendations(page));
   }
@@ -91,7 +97,7 @@ class MovieRepository implements MovieRepositoryPort {
   }
 
   @override
-  Future<List<Movie>> getTvAiringToday(int page) async {
+  Future<MovieAvailability> getTvAiringToday(int page) async {
     return _createListMovieFromListData(
         await _restMovieDatasourcePort.getTvAiringToday(page));
   }

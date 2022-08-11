@@ -2,7 +2,7 @@ import 'package:prueba_leal/domain/model/entity/movie/last_episode_air.dart';
 import 'package:prueba_leal/domain/model/entity/movie/season.dart';
 
 class Movie {
-  final String originalName;
+  final String name;
   final int id;
   final String backdropPath;
   final String posterPath;
@@ -13,7 +13,7 @@ class Movie {
   late Map<int, Season> seasons;
 
   Movie(
-      {required this.originalName,
+      {required this.name,
       required this.id,
       required this.backdropPath,
       required this.posterPath,

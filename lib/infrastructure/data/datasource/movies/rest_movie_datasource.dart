@@ -1,14 +1,16 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/const_rest.dart';
 import 'package:prueba_leal/infrastructure/data/datasource/http_client.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/episode_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/movie_response.dart';
+import 'package:prueba_leal/infrastructure/data/datasource/movies/rest_response/season_response.dart';
 import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_movie_datasource_port.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/season_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/movie_detail_response.dart';
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/episode_response.dart';
 
+import '../../datasource/movies/rest_response/movie_detail_response.dart';
+import '../../datasource/movies/rest_response/movie_item_response.dart';
+
+///Clase encargada de trae los datos de la api https://developers.themoviedb.org/3/tv/
+///a traves del protocolo REST.
 class RestMovieDatasource implements RestMovieDatasourcePort {
   final HttpClient _htppClient;
 
@@ -39,36 +41,37 @@ class RestMovieDatasource implements RestMovieDatasourcePort {
     }
   }
 
-  //Check
   @override
-  Future<List<MovieResponse>> getPopular(int page) async {
+  Future<MovieResponse> getPopular(int page) async {
     try {
       Response response = await _htppClient
           .get(urlRequest: ConstRest.getPopularMovies, params: {"page": page});
 
       Iterable moviesResponse = response.data["results"];
 
-      List<MovieResponse> movies = List<MovieResponse>.from(
-          moviesResponse.map((data) => MovieResponse.fromMap(data)));
+      List<MovieItemResponse> movies = List<MovieItemResponse>.from(
+          moviesResponse.map((data) => MovieItemResponse.fromMap(data)));
 
-      return movies;
+      return MovieResponse(response.data["page"] as int,
+          response.data["total_pages"] as int, movies);
     } catch (e) {
       rethrow;
     }
   }
 
   @override
-  Future<List<MovieResponse>> getRecommendations(int page) async {
+  Future<MovieResponse> getRecommendations(int page) async {
     Response response = await _htppClient.get(
         urlRequest: ConstRest.getRecomentationsMovies, params: {"page": page});
 
     try {
       Iterable moviesResponse = response.data["results"];
 
-      List<MovieResponse> movies = List<MovieResponse>.from(
-          moviesResponse.map((data) => MovieResponse.fromMap(data)));
+      List<MovieItemResponse> movies = List<MovieItemResponse>.from(
+          moviesResponse.map((data) => MovieItemResponse.fromMap(data)));
 
-      return movies;
+      return MovieResponse(response.data["page"] as int,
+          response.data["total_pages"] as int, movies);
     } catch (e) {
       rethrow;
     }
@@ -87,17 +90,18 @@ class RestMovieDatasource implements RestMovieDatasourcePort {
   }
 
   @override
-  Future<List<MovieResponse>> getTvAiringToday(int page) async {
+  Future<MovieResponse> getTvAiringToday(int page) async {
     try {
       Response response = await _htppClient.get(
           urlRequest: ConstRest.getTvAiringTodayMovies, params: {"page": page});
 
       Iterable moviesResponse = response.data["results"];
 
-      List<MovieResponse> movies = List<MovieResponse>.from(
-          moviesResponse.map((data) => MovieResponse.fromMap(data)));
+      List<MovieItemResponse> movies = List<MovieItemResponse>.from(
+          moviesResponse.map((data) => MovieItemResponse.fromMap(data)));
 
-      return movies;
+      return MovieResponse(response.data["page"] as int,
+          response.data["total_pages"] as int, movies);
     } catch (e) {
       rethrow;
     }

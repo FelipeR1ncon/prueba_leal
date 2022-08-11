@@ -26,7 +26,7 @@ void setupInjectionDependency() {
 
   sl.registerLazySingleton<MovieRepositoryPort>(() => MovieRepository(sl()));
 
-  ////////// Datasource //////////
+  ////////// Datasources //////////
 
   sl.registerLazySingleton<RestMovieDatasourcePort>(
       () => RestMovieDatasource(sl()));

@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_response/guest_start.dart';
+import '../../../datasource/movies/rest_response/guest_start.dart';
+
+
 
 class EpisodeResponse {
   final int episodeNumber;
