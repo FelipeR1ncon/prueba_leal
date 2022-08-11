@@ -7,7 +7,7 @@ class HttpClient {
   late Dio client;
 
   HttpClient() {
-    client.options.baseUrl = ConstRest.baseUrl;
+    client = Dio();
   }
 
   dynamic get({required urlRequest, Map<String, dynamic>? params}) async {
@@ -15,7 +15,8 @@ class HttpClient {
       params ??= {};
       params["language"] = "en-US";
       params["api_key"] = ConstRest.sss;
-      Response response = await client.get(urlRequest, queryParameters: params);
+      Response response = await client.get(ConstRest.baseUrl + urlRequest,
+          queryParameters: params);
 
       if (response.statusCode == 200) {
         return response;
