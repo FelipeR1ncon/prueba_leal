@@ -12,17 +12,22 @@ import 'package:prueba_leal/infrastructure/data/datasource_port/login/login_data
 import 'package:prueba_leal/infrastructure/data/datasource_port/movies/rest_movie_datasource_port.dart';
 import 'package:prueba_leal/infrastructure/respository/login/login_repository.dart';
 import 'package:prueba_leal/infrastructure/respository/movies/movie_repository.dart';
+import 'package:prueba_leal/presentation/login/cubit/login_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
+
+import '../presentation/login/login_page.dart';
 
 final sl = GetIt.I;
 
 void setupInjectionDependency() {
   ////////// Pages /////////////
   sl.registerFactory(() => HomePage(sl()));
+  sl.registerFactory(() => LoginPage(sl()));
 
   ////////// Cubits /////////////
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl()));
+  sl.registerFactory<LoginCubit>(() => LoginCubit(sl()));
 
   ///////// Use cases //////////
 
