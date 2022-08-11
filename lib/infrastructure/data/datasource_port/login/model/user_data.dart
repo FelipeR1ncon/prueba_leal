@@ -1,6 +1,6 @@
-class UserData {
+class LoginResponse {
   final String name;
   final String password;
 
-  UserData(this.name, this.password);
+  LoginResponse(this.name, this.password);
 }

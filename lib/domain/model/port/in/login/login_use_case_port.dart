@@ -1,6 +1,5 @@
 import '../../../entity/user.dart';
 
-abstract class Login {
-
+abstract class LoginUseCasePort {
   Future<User?> login(String name, String password);
 }
