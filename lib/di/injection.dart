@@ -36,7 +36,7 @@ Future<void> setupInjectionDependency() async {
 
   ////////// Cubits /////////////
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl()));
-  sl.registerFactory<LoginCubit>(() => LoginCubit(sl()));
+  sl.registerFactory<LoginCubit>(() => LoginCubit(sl(), sl()));
 
   ///////// Use cases //////////
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:prueba_leal/presentation/login/login_page.dart';
+import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'di/injection.dart';
-import 'presentation/movies/home/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,8 +22,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          hintColor: LocalColor.gris,
+          inputDecorationTheme: const InputDecorationTheme(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+            border: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey),
+            ),
+          ),
+          textSelectionTheme: const TextSelectionThemeData(
+            cursorColor: LocalColor.gris,
+            //<-- SEE HERE
+          ),
+          indicatorColor: LocalColor.gris),
       title: 'Flutter Demo',
-      home: sl<HomePage>(),
+      home: sl<LoginPage>(),
     );
   }
 }

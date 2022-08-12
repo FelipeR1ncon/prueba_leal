@@ -9,7 +9,7 @@ class FilledButton extends StatelessWidget {
       required this.text,
       required this.onPressed,
       this.isPrimary = true,
-      this.height = 48,
+      this.height = 42,
       this.textStyle = LocalTextStyle.buttonText})
       : super(key: key);
 
@@ -35,7 +35,7 @@ class FilledButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(32))),
             backgroundColor: MaterialStateProperty.all(
                 isPrimary ? LocalColor.amarillo : LocalColor.blanco)),
-        onPressed: onPressed.call(),
+        onPressed: () => onPressed.call(),
         child: SizedBox(
           height: height,
           child: Center(

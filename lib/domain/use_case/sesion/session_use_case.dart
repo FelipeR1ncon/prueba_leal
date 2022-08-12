@@ -4,7 +4,7 @@ import 'package:prueba_leal/domain/model/port/out/sesion/session_repository_port
 import '../../../infrastructure/respository/sesion/session_repository.dart';
 
 class SessionUseCase implements SessionUseCasePort {
-  final SessionRepository _sessionRepository;
+  final SessionRepositoryPort _sessionRepository;
 
   SessionUseCase(this._sessionRepository);
 
