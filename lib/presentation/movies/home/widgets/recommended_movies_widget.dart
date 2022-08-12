@@ -22,6 +22,7 @@ class RecommendedMoviesWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         key: UniqueKey(),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,7 +82,7 @@ class RecommendedMoviesWidget extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.10,
+                            width: MediaQuery.of(context).size.width * 0.08,
                           ),
                           Expanded(
                             child: Padding(
@@ -96,9 +97,9 @@ class RecommendedMoviesWidget extends StatelessWidget {
                                   Container(
                                     height: 2,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 24),
-                                    child: Flexible(
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 24),
                                       child: AutoSizeText(
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
@@ -143,10 +144,13 @@ class RecommendedMoviesWidget extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Flexible(
-                                        child: FilledButton(
-                                            text: "Watch Now",
-                                            height: 30,
-                                            onPressed: () {}),
+                                        child: SizedBox(
+                                          width: 120,
+                                          child: FilledButton(
+                                              text: "Watch Now",
+                                              height: 30,
+                                              onPressed: () {}),
+                                        ),
                                       ),
                                       Container(
                                         key: UniqueKey(),

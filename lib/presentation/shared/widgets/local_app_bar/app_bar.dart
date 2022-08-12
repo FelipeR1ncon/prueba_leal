@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba_leal/di/injection.dart';
-import 'package:prueba_leal/presentation/login/login_page.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/cubit/app_bar_cubit.dart';
 

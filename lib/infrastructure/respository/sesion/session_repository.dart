@@ -1,4 +1,3 @@
-import 'package:prueba_leal/domain/model/entity/user.dart';
 import 'package:prueba_leal/domain/model/port/out/sesion/session_repository_port.dart';
 import 'package:prueba_leal/infrastructure/data/datasource_port/sesion/session_datasource_port.dart';
 

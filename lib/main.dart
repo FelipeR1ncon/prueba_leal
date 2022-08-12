@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:prueba_leal/presentation/login/login_page.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/style/text_style.dart';
 import 'di/injection.dart';
-import 'presentation/movies/home/home_page.dart';
 import 'presentation/splash/splash_page.dart';
 
 void main() async {

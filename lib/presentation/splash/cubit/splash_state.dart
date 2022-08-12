@@ -14,8 +14,7 @@ class SplashState extends Equatable {
   const SplashState(this.status, {this.nameUser = ""});
 
   @override
-  // TODO: implement props
-  List<Object?> get props => [status];
+  List<Object?> get props => [status, nameUser];
 
   SplashState copyWith({
     SplashStatus? status,

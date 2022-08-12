@@ -1,5 +1,3 @@
-import '../../../entity/user.dart';
-
 abstract class SessionUseCasePort {
   String getUser();
 

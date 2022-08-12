@@ -1,10 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:prueba_leal/di/injection.dart';
 import 'package:prueba_leal/domain/model/port/in/sesion/sesion_use_case.dart';
-import 'package:prueba_leal/presentation/login/login_page.dart';
-import 'package:prueba_leal/presentation/movies/home/home_page.dart';
 
 part 'splash_state.dart';
 

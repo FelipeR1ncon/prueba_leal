@@ -144,6 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 32),
                                 child: TextFormField(
+                                  obscureText: true,
                                   style: const TextStyle(color: Colors.white),
                                   controller: _controllerPassword,
                                   decoration: const InputDecoration(

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_final_fields
 import 'package:prueba_leal/domain/model/entity/movie/episode.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
 import 'package:prueba_leal/domain/model/entity/movie/season.dart';

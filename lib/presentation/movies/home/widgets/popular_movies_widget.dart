@@ -71,13 +71,11 @@ class PopularMoviesWidget extends StatelessWidget {
                           ),
                           SizedBox(
                             width: MediaQuery.of(context).size.width * 0.25,
-                            child: Expanded(
-                              child: AutoSizeText(
-                                popularMovies[index].name,
-                                maxLines: 2,
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 14),
-                              ),
+                            child: AutoSizeText(
+                              popularMovies[index].name,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 14),
                             ),
                           ),
                           const SizedBox(

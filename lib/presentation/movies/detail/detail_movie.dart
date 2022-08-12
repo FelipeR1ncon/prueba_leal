@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -103,17 +102,15 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
                     const SizedBox(height: 24),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.43,
-                      child: Flexible(
-                        child: Text(
-                          widget.movies[currentIndex].name,
-                          textAlign: TextAlign.center,
-                          maxLines: 3,
-                          style: const TextStyle(
-                              color: LocalColor.blanco,
-                              fontFamily: LocalTextStyle.fontFamilyGilroy,
-                              fontWeight: LocalTextStyle.fontWeightBold,
-                              fontSize: 24),
-                        ),
+                      child: AutoSizeText(
+                        widget.movies[currentIndex].name,
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        style: const TextStyle(
+                            color: LocalColor.blanco,
+                            fontFamily: LocalTextStyle.fontFamilyGilroy,
+                            fontWeight: LocalTextStyle.fontWeightBold,
+                            fontSize: 24),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -131,15 +128,14 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
                     const SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.only(right: 16),
-                      child: Flexible(
-                        child: Text(
-                          "IMDb: ${widget.movies[currentIndex].voteAverage}",
-                          style: const TextStyle(
-                              color: LocalColor.gris,
-                              fontSize: 12,
-                              fontFamily: LocalTextStyle.fontFamilyGilroy),
-                          textAlign: TextAlign.start,
-                        ),
+                      child: AutoSizeText(
+                        "IMDb: ${widget.movies[currentIndex].voteAverage}",
+                        maxLines: 1,
+                        style: const TextStyle(
+                            color: LocalColor.gris,
+                            fontSize: 12,
+                            fontFamily: LocalTextStyle.fontFamilyGilroy),
+                        textAlign: TextAlign.start,
                       ),
                     ),
                     const SizedBox(height: 15),

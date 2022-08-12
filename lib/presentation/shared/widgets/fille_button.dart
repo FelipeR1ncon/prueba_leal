@@ -31,6 +31,8 @@ class FilledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
+            padding: MaterialStateProperty.all(
+                const EdgeInsets.symmetric(horizontal: 4)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(32))),
             backgroundColor: MaterialStateProperty.all(
