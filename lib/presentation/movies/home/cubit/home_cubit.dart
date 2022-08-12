@@ -28,7 +28,7 @@ class HomeCubit extends Cubit<HomeState> {
       });
 
       emit(state.copyWith(
-          homeStatus: HomeStatus.loading,
+          homeStatus: HomeStatus.success,
           popularMovies: popularMovies.movies,
           currentPagePopular: popularMovies.page,
           limitPagePopular: popularMovies.totalPages,

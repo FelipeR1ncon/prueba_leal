@@ -34,7 +34,7 @@ class LocalAppBar extends StatelessWidget {
               ),
               const Text(
                 "Home",
-                style: TextStyle(color: LocalColor.gris, fontSize: 18),
+                style: TextStyle(color: LocalColor.blanco, fontSize: 16),
               ),
               GestureDetector(
                   onTap: () => _appBarCubit.closeSesion(),
