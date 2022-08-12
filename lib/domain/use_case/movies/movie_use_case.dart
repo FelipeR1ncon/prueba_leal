@@ -3,7 +3,6 @@ import 'package:prueba_leal/domain/model/entity/movie/episode.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
 import 'package:prueba_leal/domain/model/entity/movie/season.dart';
 import 'package:prueba_leal/domain/model/port/in/movies/movie_use_case_port.dart';
-import 'package:prueba_leal/domain/model/entity/user.dart';
 import 'package:prueba_leal/domain/model/port/out/movies/movie_repository_port.dart';
 
 import '../../model/entity/movie/movie_availability.dart';
@@ -13,20 +12,24 @@ class MovieUseCase implements MovieUseCasePort {
   final MovieRepositoryPort _movieRepositoryPort;
 
   // ignore: prefer_final_fields
-  ///Map para guardar las peliculaas favoritas que elija al usuario
+  ///List para guardar las peliculaas favoritas que elija al usuario
   ///ya que este caso de uso singleton y no requerir que se persistan
   ///la almacenamos en esta variable pera que se guarde durante la ejecucion de la app
-  late Map<User, List<Movie>> _favoriteMovies;
+  late List<Movie> _favoriteMovies;
 
-  MovieUseCase(this._movieRepositoryPort) : _favoriteMovies = {};
+  MovieUseCase(this._movieRepositoryPort) : _favoriteMovies = [];
 
   ///Metodo que le permite al usuario seleccionar una pelicula como favorita
   @override
-  void addFavorite(User user, Movie movie) {
-    if (_favoriteMovies.containsKey(user)) {
-      _favoriteMovies[user]!.add(movie);
-    } else {
-      _favoriteMovies[user] = [movie];
+  void addFavorite(Movie movie) {
+    bool isNew = true;
+    for (Movie currentMovie in _favoriteMovies) {
+      if (currentMovie.id == movie.id) {
+        isNew = false;
+      }
+    }
+    if (isNew) {
+      _favoriteMovies.add(movie);
     }
   }
 
@@ -43,14 +46,10 @@ class MovieUseCase implements MovieUseCasePort {
     return _movieRepositoryPort.getEpisode(idMovie, numSeason, numEpisode);
   }
 
-  ///Dado un usuario, @return los favoritos asociados anteriormente.
+  /// @return los favoritos asociados durante la sesion.
   @override
-  List<Movie> getFavorites(User user) {
-    if (_favoriteMovies.containsKey(user)) {
-      return _favoriteMovies[user]!;
-    } else {
-      return [];
-    }
+  List<Movie> getFavorites() {
+    return _favoriteMovies;
   }
 
   ///@List<Movie> correspondientes a la [page] con las mas populares del momento.

@@ -17,6 +17,7 @@ class HomeCubit extends Cubit<HomeState> {
   ///Trae la primara pagina de las peliculas recomendadas y populares
   void getInitialMovies() async {
     try {
+      emit(state.copyWith(homeStatus: HomeStatus.loading));
       late MovieAvailability popularMovies;
       late MovieAvailability recommendedMovies;
       await Future.wait([
@@ -41,5 +42,17 @@ class HomeCubit extends Cubit<HomeState> {
           popularMovies: [],
           recommendedMovies: []);
     }
+  }
+
+  void addFavorite(Movie movie) {
+    _movieUseCasePort.addFavorite(movie);
+
+    for (Movie movieIterable in state.recommendedMovies!) {
+      if (movieIterable.id == movie.id) {
+        movieIterable.isFavorite = true;
+      }
+    }
+
+    emit(state.copyWith(recommendedMovies: state.recommendedMovies));
   }
 }

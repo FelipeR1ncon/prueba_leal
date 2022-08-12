@@ -11,6 +11,7 @@ class Movie {
   int totalSeasons;
   LastEpisodeToAir? lastEpisodeToAir;
   late Map<int, Season> seasons;
+  bool isFavorite;
 
   Movie(
       {required this.name,
@@ -19,7 +20,8 @@ class Movie {
       required this.posterPath,
       this.voteAverage = 0.0,
       this.totalEpisodes = 0,
-      this.totalSeasons = 0}) {
+      this.totalSeasons = 0,
+      this.isFavorite = false}) {
     seasons = {};
   }
 

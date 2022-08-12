@@ -2,7 +2,6 @@ import '../../../entity/movie/episode.dart';
 import '../../../entity/movie/movie.dart';
 import '../../../entity/movie/movie_availability.dart';
 import '../../../entity/movie/season.dart';
-import '../../../entity/user.dart';
 
 abstract class MovieUseCasePort {
   Future<MovieAvailability> getPopular(int page);
@@ -19,7 +18,7 @@ abstract class MovieUseCasePort {
 
   Future<MovieAvailability> getTvAiringToday(int page);
 
-  List<Movie> getFavorites(User user);
+  List<Movie> getFavorites();
 
-  void addFavorite(User user, Movie movie);
+  void addFavorite(Movie movie);
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:prueba_leal/presentation/login/login_page.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
+import 'package:prueba_leal/presentation/shared/style/text_style.dart';
 import 'di/injection.dart';
 import 'presentation/movies/home/home_page.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          fontFamily: LocalTextStyle.fontFamilyGilroy,
           hintColor: LocalColor.gris,
           inputDecorationTheme: const InputDecorationTheme(
             focusedBorder: UnderlineInputBorder(
