@@ -21,15 +21,15 @@ class SplashPage extends StatelessWidget {
             content: Text("Welcome ${state.nameUser}"),
           ));
 
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => sl<HomePage>()));
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => sl<HomePage>()),
+              (Route<dynamic> route) => false);
         }
 
         if (state.status == SplashStatus.noLogogged) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => sl<LoginPage>()),
-          );
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => sl<LoginPage>()),
+              (Route<dynamic> route) => false);
         }
       },
       child: Scaffold(

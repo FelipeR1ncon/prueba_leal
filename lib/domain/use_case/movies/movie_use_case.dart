@@ -11,8 +11,8 @@ import '../../model/entity/movie/movie_availability.dart';
 class MovieUseCase implements MovieUseCasePort {
   final MovieRepositoryPort _movieRepositoryPort;
 
-  // ignore: prefer_final_fields
-  ///List para guardar las peliculaas favoritas que elija al usuario
+
+  ///List para guardar las peliculas favoritas que elija al usuario
   ///ya que este caso de uso singleton y no requerir que se persistan
   ///la almacenamos en esta variable pera que se guarde durante la ejecucion de la app
   late List<Movie> _favoriteMovies;
@@ -40,7 +40,7 @@ class MovieUseCase implements MovieUseCasePort {
     _favoriteMovies.clear();
   }
 
-  ///Metodo que obtiene la informacion de episodeo especifico
+  ///Metodo que obtiene la informacion de un episodeo en especifico
   @override
   Future<Episode> getEpisode(int idMovie, int numSeason, int numEpisode) {
     return _movieRepositoryPort.getEpisode(idMovie, numSeason, numEpisode);
@@ -52,13 +52,13 @@ class MovieUseCase implements MovieUseCasePort {
     return _favoriteMovies;
   }
 
-  ///@List<Movie> correspondientes a la [page] con las mas populares del momento.
+  ///@List<Movie> correspondientes a la [page] con las mas series mas populares del momento.
   @override
   Future<MovieAvailability> getPopular(int page) {
     return _movieRepositoryPort.getPopular(page);
   }
 
-  ///@List<Movie> correspondientes a la [page] recomendadas del momento.
+  ///@List<Movie> correspondientes a la [page] con las series mas recomendadas del momento.
   @override
   Future<MovieAvailability> getRecommendations(int page) {
     return _movieRepositoryPort.getRecommendations(page);
@@ -77,8 +77,8 @@ class MovieUseCase implements MovieUseCasePort {
   }
 
   ///Permite optener informacion adicional de una [movie] especifica
-  ///esta info adiccional es la cantidad totla de capitulos y de temporadas
-  ///ademas de cual fue el ultimo capito que salio al aire hasta ahora.
+  ///esta info adiccional es la cantidad total de capitulos y de temporadas
+  ///ademas de cual fue el ultimo capitulo que salio al aire.
   @override
   Future<Movie> getDetails(Movie movie) {
     return _movieRepositoryPort.getDetail(movie);

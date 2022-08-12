@@ -13,7 +13,7 @@ class LoginPage extends StatefulWidget {
   const LoginPage(this._loginCubit, {Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -40,10 +40,9 @@ class _LoginPageState extends State<LoginPage> {
           }
 
           if (state.loginStatus == LoginStatus.success) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => sl<HomePage>()),
-            );
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => sl<HomePage>()),
+                (Route<dynamic> route) => false);
           }
         },
         builder: (context, state) {
@@ -160,7 +159,9 @@ class _LoginPageState extends State<LoginPage> {
                           Expanded(
                             child: Center(
                               child: SizedBox(
-                                width: 120,
+                                width: state.loginStatus == LoginStatus.loading
+                                    ? 40
+                                    : 120,
                                 child: state.loginStatus == LoginStatus.loading
                                     ? const CircularProgressIndicator(
                                         color: LocalColor.amarillo,

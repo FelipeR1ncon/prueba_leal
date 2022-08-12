@@ -11,7 +11,7 @@ import 'package:prueba_leal/presentation/shared/widgets/movie_image_card.dart';
 ///Pantalla que muesta con mas detalle la imagen de la serie
 ///permite visualizar mejor los datos que salen en la lista.
 class DetailMoviePage extends StatefulWidget {
-  DetailMoviePage(
+ const DetailMoviePage(
       {Key? key,
       required this.movies,
       required this.intialIndex,

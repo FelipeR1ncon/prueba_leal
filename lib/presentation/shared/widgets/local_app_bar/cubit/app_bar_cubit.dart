@@ -13,9 +13,9 @@ class AppBarCubit extends Cubit<AppBarState> {
 
   void closeSesion(BuildContext context) {
     _sessionUseCasePort.logout();
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => sl<LoginPage>()),
-    );
+
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => sl<LoginPage>()),
+        (Route<dynamic> route) => false);
   }
 }
