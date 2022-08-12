@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:prueba_leal/presentation/login/login_page.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'di/injection.dart';
+import 'presentation/movies/home/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,11 +38,10 @@ class MyApp extends StatelessWidget {
           ),
           textSelectionTheme: const TextSelectionThemeData(
             cursorColor: LocalColor.gris,
-            //<-- SEE HERE
           ),
           indicatorColor: LocalColor.gris),
       title: 'Flutter Demo',
-      home: sl<LoginPage>(),
+      home: sl<HomePage>(),
     );
   }
 }

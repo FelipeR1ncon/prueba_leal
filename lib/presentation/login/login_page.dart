@@ -96,7 +96,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Visibility(
-                  visible: state.loginStatus == LoginStatus.enterData,
+                  visible: state.loginStatus == LoginStatus.enterData ||
+                      state.loginStatus == LoginStatus.loading,
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(

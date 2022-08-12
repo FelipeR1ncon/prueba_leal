@@ -19,6 +19,7 @@ import 'package:prueba_leal/infrastructure/respository/movies/movie_repository.d
 import 'package:prueba_leal/presentation/login/cubit/login_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
+import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/cubit/app_bar_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/use_case/sesion/session_use_case.dart';
@@ -31,12 +32,16 @@ Future<void> setupInjectionDependency() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   ////////// Pages /////////////
-  sl.registerFactory(() => HomePage(sl()));
+  sl.registerFactory(() => HomePage(
+        sl(),
+        appBarCubit: sl(),
+      ));
   sl.registerFactory(() => LoginPage(sl()));
 
   ////////// Cubits /////////////
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl()));
   sl.registerFactory<LoginCubit>(() => LoginCubit(sl(), sl()));
+  sl.registerFactory<AppBarCubit>(() => AppBarCubit(sl()));
 
   ///////// Use cases //////////
 
