@@ -12,39 +12,28 @@ class LocalAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AppBarCubit, AppBarState>(
-      bloc: _appBarCubit,
-      listener: (context, state) {
-        if (state == AppBarState.closeSession) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => sl<LoginPage>()),
-          );
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        child: SizedBox(
-          height: 28,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                width: 22,
-              ),
-              const Text(
-                "Home",
-                style: TextStyle(color: LocalColor.blanco, fontSize: 16),
-              ),
-              GestureDetector(
-                  onTap: () => _appBarCubit.closeSesion(),
-                  child: const Icon(
-                    Icons.settings,
-                    color: LocalColor.gris,
-                    size: 22,
-                  ))
-            ],
-          ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      child: SizedBox(
+        height: 28,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 22,
+            ),
+            const Text(
+              "Home",
+              style: TextStyle(color: LocalColor.blanco, fontSize: 16),
+            ),
+            GestureDetector(
+                onTap: () => _appBarCubit.closeSesion(context),
+                child: const Icon(
+                  Icons.settings,
+                  color: LocalColor.gris,
+                  size: 22,
+                ))
+          ],
         ),
       ),
     );

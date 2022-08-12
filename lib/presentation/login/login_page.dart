@@ -21,6 +21,13 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _controllerPassword = TextEditingController();
 
   @override
+  void dispose() {
+    _controllerName.dispose();
+    _controllerPassword.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<LoginCubit, LoginState>(
@@ -102,9 +109,9 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       height: MediaQuery.of(context).size.height * 0.4,
-                      decoration: const BoxDecoration(
-                          color: Color(0xCC191919),
-                          borderRadius: BorderRadius.only(
+                      decoration: BoxDecoration(
+                          color: const Color(0xF191919).withOpacity(0.95),
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(32),
                             topRight: Radius.circular(32),
                           )),
@@ -120,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                                     onTap: () =>
                                         widget._loginCubit.hideInputs(),
                                     child: const Icon(
-                                      Icons.close_outlined,
+                                      Icons.close,
                                       color: Colors.white,
                                       size: 22,
                                     ),

@@ -29,7 +29,9 @@ class _HomeState extends State<HomePage> {
         builder: (context, state) {
           if (state.homeStatus == HomeStatus.loading) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: LocalColor.amarillo,
+              ),
             );
           } else if (state.homeStatus == HomeStatus.success) {
             return SafeArea(

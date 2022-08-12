@@ -20,6 +20,8 @@ import 'package:prueba_leal/presentation/login/cubit/login_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
 import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/cubit/app_bar_cubit.dart';
+import 'package:prueba_leal/presentation/splash/cubit/splash_cubit.dart';
+import 'package:prueba_leal/presentation/splash/splash_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/use_case/sesion/session_use_case.dart';
@@ -37,11 +39,13 @@ Future<void> setupInjectionDependency() async {
         appBarCubit: sl(),
       ));
   sl.registerFactory(() => LoginPage(sl()));
+  sl.registerFactory(() => SplashPage(sl()));
 
   ////////// Cubits /////////////
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl()));
   sl.registerFactory<LoginCubit>(() => LoginCubit(sl(), sl()));
   sl.registerFactory<AppBarCubit>(() => AppBarCubit(sl()));
+  sl.registerFactory<SplashCubit>(() => SplashCubit(sl()));
 
   ///////// Use cases //////////
 
