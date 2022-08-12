@@ -30,6 +30,17 @@ class DetailMoviePage extends StatefulWidget {
 class _DetailMoviePageState extends State<DetailMoviePage> {
   int currentIndex = 0;
 
+  CarouselController carouselController = CarouselController();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      carouselController.jumpToPage(widget.intialIndex);
+      currentIndex = widget.intialIndex;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +79,7 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CarouselSlider.builder(
-                      //carouselController: controller,
+                      carouselController: carouselController,
                       itemCount: widget.movies.length,
                       options: CarouselOptions(
                         onPageChanged: ((index, reason) {
@@ -83,7 +94,6 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
                         enlargeCenterPage: true,
                         scrollDirection: Axis.horizontal,
                       ),
-
                       itemBuilder: (ctx, index, real) {
                         return CardMoviewImage(
                             pathImage:
