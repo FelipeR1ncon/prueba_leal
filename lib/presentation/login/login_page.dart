@@ -108,9 +108,9 @@ class _LoginPageState extends State<LoginPage> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      height: MediaQuery.of(context).size.height * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.46,
                       decoration: BoxDecoration(
-                          color: const Color(0xF191919).withOpacity(0.95),
+                          color: const Color(0xFF191919).withOpacity(0.95),
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(32),
                             topRight: Radius.circular(32),
@@ -152,6 +152,9 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                               ),
                             ],
+                          ),
+                          const SizedBox(
+                            height: 16,
                           ),
                           Expanded(
                             child: Center(
