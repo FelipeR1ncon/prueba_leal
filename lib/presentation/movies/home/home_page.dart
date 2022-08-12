@@ -39,16 +39,13 @@ class _HomeState extends State<HomePage> {
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
                 LocalAppBar(widget.appBarCubit),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.40,
+                  height: MediaQuery.of(context).size.height * 0.4,
                   child: PopularMoviesWidget(
                     popularMovies: state.popularMovies!,
                   ),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.only(right: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [
@@ -68,12 +65,12 @@ class _HomeState extends State<HomePage> {
                   height: 10,
                 ),
                 const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 17),
                   child: Divider(
                     color: LocalColor.gris,
                   ),
                 ),
-                Expanded(
+                Flexible(
                   child: RecommendedMoviesWidget(
                     recommendedMovies: state.recommendedMovies!,
                     homeCubit: widget.homeCubit,

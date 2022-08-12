@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
@@ -24,10 +25,13 @@ class RecommendedMoviesWidget extends StatelessWidget {
         key: UniqueKey(),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 24,
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 6, maxHeight: 26),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
           ),
-          const Text(
+          const AutoSizeText(
             "Recommendations",
             style: TextStyle(
                 color: LocalColor.blanco,
@@ -35,8 +39,11 @@ class RecommendedMoviesWidget extends StatelessWidget {
                 fontWeight: LocalTextStyle.fontWeightBold),
             textAlign: TextAlign.start,
           ),
-          const SizedBox(
-            height: 30,
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 6, maxHeight: 26),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.04,
+            ),
           ),
           Expanded(
             child: ListView.builder(
@@ -48,13 +55,13 @@ class RecommendedMoviesWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 24),
                     child: SizedBox(
                       key: UniqueKey(),
-                      height: MediaQuery.of(context).size.height * 0.22,
+                      height: MediaQuery.of(context).size.height * 0.16,
                       child: Row(
                         key: UniqueKey(),
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.22,
+                            height: MediaQuery.of(context).size.height * 0.16,
                             width: MediaQuery.of(context).size.width * 0.35,
                             child: GestureDetector(
                               onTap: () {
@@ -70,7 +77,7 @@ class RecommendedMoviesWidget extends StatelessWidget {
                               },
                               child: CardMoviewImage(
                                   pathImage:
-                                      "w200${recommendedMovies[index].posterPath}"),
+                                      "w300${recommendedMovies[index].posterPath}"),
                             ),
                           ),
                           SizedBox(
@@ -91,37 +98,43 @@ class RecommendedMoviesWidget extends StatelessWidget {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(right: 24),
-                                    child: Text(
-                                      recommendedMovies[index].name,
-                                      style: const TextStyle(
-                                          color: LocalColor.blanco,
-                                          fontSize: 16),
-                                      textAlign: TextAlign.start,
+                                    child: Flexible(
+                                      child: AutoSizeText(
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        recommendedMovies[index].name,
+                                        style: const TextStyle(
+                                            color: LocalColor.blanco,
+                                            fontSize: 16),
+                                        textAlign: TextAlign.start,
+                                      ),
                                     ),
                                   ),
-                                  RatingBarIndicator(
-                                    rating:
-                                        (recommendedMovies[index].voteAverage /
-                                                2) -
-                                            0.45,
-                                    itemBuilder: (context, index) => const Icon(
-                                      Icons.star,
-                                      color: LocalColor.gris,
+                                  Flexible(
+                                    child: RatingBarIndicator(
+                                      rating: (recommendedMovies[index]
+                                                  .voteAverage /
+                                              2) -
+                                          0.45,
+                                      itemBuilder: (context, index) =>
+                                          const Icon(
+                                        Icons.star,
+                                        color: LocalColor.gris,
+                                      ),
+                                      itemCount: 5,
+                                      itemSize: 12.0,
+                                      direction: Axis.horizontal,
                                     ),
-                                    itemCount: 5,
-                                    itemSize: 12.0,
-                                    direction: Axis.horizontal,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(right: 16),
-                                    child: Flexible(
-                                      child: Text(
-                                        "IMDb: ${recommendedMovies[index].voteAverage}",
-                                        style: const TextStyle(
-                                            color: LocalColor.gris,
-                                            fontSize: 8),
-                                        textAlign: TextAlign.start,
-                                      ),
+                                    child: Text(
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      "IMDb: ${recommendedMovies[index].voteAverage}",
+                                      style: const TextStyle(
+                                          color: LocalColor.gris, fontSize: 8),
+                                      textAlign: TextAlign.start,
                                     ),
                                   ),
                                   Row(
@@ -129,10 +142,12 @@ class RecommendedMoviesWidget extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      FilledButton(
-                                          text: "Watch Now",
-                                          height: 30,
-                                          onPressed: () {}),
+                                      Flexible(
+                                        child: FilledButton(
+                                            text: "Watch Now",
+                                            height: 30,
+                                            onPressed: () {}),
+                                      ),
                                       Container(
                                         key: UniqueKey(),
                                         child: recommendedMovies[index]

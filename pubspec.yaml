@@ -42,6 +42,7 @@ dependencies:
   mocktail: ^0.3.0
   flutter_rating_bar: ^4.0.1
   carousel_slider: ^4.1.1
+  auto_size_text: ^3.0.0
 
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
@@ -20,10 +21,7 @@ class PopularMoviesWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(
-            height: 16,
-          ),
-          const Text(
+          const AutoSizeText(
             "Popular",
             style: TextStyle(
                 color: LocalColor.blanco,
@@ -41,61 +39,65 @@ class PopularMoviesWidget extends StatelessWidget {
                 itemBuilder: (BuildContext ctx, index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 32),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.23,
-                          width: MediaQuery.of(context).size.width * 0.35,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => DetailMoviePage(
-                                          movies: popularMovies,
-                                          intialIndex: index,
-                                          tittle: "Popular",
-                                        )),
-                              );
-                            },
-                            child: CardMoviewImage(
-                                pathImage:
-                                    "w200${popularMovies[index].posterPath}"),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 4,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
-                          child: Expanded(
-                            child: Text(
-                              popularMovies[index].name,
-                              maxLines: 2,
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 18),
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      width: MediaQuery.of(context).size.width * 0.33,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.25,
+                            width: MediaQuery.of(context).size.width * 0.33,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DetailMoviePage(
+                                            movies: popularMovies,
+                                            intialIndex: index,
+                                            tittle: "Popular",
+                                          )),
+                                );
+                              },
+                              child: CardMoviewImage(
+                                  pathImage:
+                                      "w300${popularMovies[index].posterPath}"),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 13,
-                        ),
-                        Flexible(
-                          child: RatingBarIndicator(
-                            rating:
-                                (popularMovies[index].voteAverage / 2) - 0.45,
-                            itemBuilder: (context, index) => const Icon(
-                              Icons.star,
-                              color: LocalColor.gris,
-                            ),
-                            itemCount: 5,
-                            itemSize: 12.0,
-                            direction: Axis.horizontal,
+                          const SizedBox(
+                            height: 4,
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            child: Expanded(
+                              child: AutoSizeText(
+                                popularMovies[index].name,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 14),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Flexible(
+                            child: RatingBarIndicator(
+                              rating:
+                                  (popularMovies[index].voteAverage / 2) - 0.45,
+                              itemBuilder: (context, index) => const Icon(
+                                Icons.star,
+                                color: LocalColor.gris,
+                              ),
+                              itemCount: 5,
+                              itemSize: 12.0,
+                              direction: Axis.horizontal,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),
