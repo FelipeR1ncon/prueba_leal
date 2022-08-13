@@ -17,6 +17,7 @@ import 'package:prueba_leal/infrastructure/data/datasource_port/sesion/session_d
 import 'package:prueba_leal/infrastructure/respository/login/login_repository.dart';
 import 'package:prueba_leal/infrastructure/respository/movies/movie_repository.dart';
 import 'package:prueba_leal/presentation/login/cubit/login_cubit.dart';
+import 'package:prueba_leal/presentation/movies/episode/cubit/detail_episode_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
 import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/cubit/app_bar_cubit.dart';
@@ -46,6 +47,7 @@ Future<void> setupInjectionDependency() async {
   sl.registerFactory<LoginCubit>(() => LoginCubit(sl(), sl()));
   sl.registerFactory<AppBarCubit>(() => AppBarCubit(sl()));
   sl.registerFactory<SplashCubit>(() => SplashCubit(sl()));
+  sl.registerFactory<DetailEpisodeCubit>(() => DetailEpisodeCubit(sl()));
 
   ///////// Use cases //////////
 

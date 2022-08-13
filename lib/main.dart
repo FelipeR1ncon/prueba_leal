@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:prueba_leal/presentation/detail/detail_movie_page.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/style/text_style.dart';
 import 'di/injection.dart';
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
           ),
           indicatorColor: LocalColor.gris),
       title: 'Flutter Demo',
-      home: DetailMoviePage(),
+      home: sl<SplashPage>(),
     );
   }
 }

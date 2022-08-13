@@ -79,8 +79,9 @@ class RestMovieDatasource implements RestMovieDatasourcePort {
   @override
   Future<SeasonResponse> getSeason(int idMovie, int numSeason) async {
     try {
-      Response response = await _htppClient.get(
-          urlRequest: "$idMovie${ConstRest.getSeason}$numSeason");
+      String path = "$idMovie${ConstRest.getSeason}$numSeason";
+
+      Response response = await _htppClient.get(urlRequest: path);
 
       return SeasonResponse.fromMap(response.data);
     } catch (e) {

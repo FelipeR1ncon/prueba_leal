@@ -4,10 +4,12 @@ import 'dart:convert';
 import '../../../datasource_port/movies/rest_response/last_episode_air_response.dart';
 
 class MovieDetailResponse {
+  final int id;
   final int totalEpisodes;
   final int totalSeasons;
   final LastEpisodeToAirRespone lastEpisodeToAirRespone;
   MovieDetailResponse({
+    required this.id,
     required this.totalEpisodes,
     required this.totalSeasons,
     required this.lastEpisodeToAirRespone,
@@ -19,6 +21,7 @@ class MovieDetailResponse {
       totalSeasons: map['number_of_seasons'] as int,
       lastEpisodeToAirRespone: LastEpisodeToAirRespone.fromMap(
           map['last_episode_to_air'] as Map<String, dynamic>),
+      id: map['id'],
     );
   }
 

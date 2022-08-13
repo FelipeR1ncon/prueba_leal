@@ -2,7 +2,10 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:prueba_leal/di/injection.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
+import 'package:prueba_leal/presentation/movies/episode/cubit/detail_episode_cubit.dart';
+import 'package:prueba_leal/presentation/movies/episode/detail_episode_page.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/style/text_style.dart';
 import 'package:prueba_leal/presentation/shared/widgets/fille_button.dart';
@@ -11,7 +14,7 @@ import 'package:prueba_leal/presentation/shared/widgets/movie_image_card.dart';
 ///Pantalla que muesta con mas detalle la imagen de la serie
 ///permite visualizar mejor los datos que salen en la lista.
 class DetailMoviePage extends StatefulWidget {
- const DetailMoviePage(
+  const DetailMoviePage(
       {Key? key,
       required this.movies,
       required this.intialIndex,
@@ -141,14 +144,28 @@ class _DetailMoviePageState extends State<DetailMoviePage> {
                     const SizedBox(height: 15),
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 0.43,
-                        child:
-                            FilledButton(text: "Wacth now", onPressed: () {}))
+                        child: FilledButton(
+                            text: "Wacth now",
+                            onPressed: () {
+                              goToEpisodes(widget.movies[currentIndex]);
+                            }))
                   ],
                 ),
               )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void goToEpisodes(Movie movi) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailEpisodePage(
+            movie: widget.movies[currentIndex],
+            detailSeasonCubit: sl<DetailEpisodeCubit>()),
       ),
     );
   }

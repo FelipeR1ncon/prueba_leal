@@ -13,7 +13,7 @@ class ImageBlurWidget extends StatelessWidget {
       children: [
         Image.network(imageUrl),
         BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
           child: Container(
             decoration: BoxDecoration(color: Colors.white.withOpacity(0.0)),
           ),

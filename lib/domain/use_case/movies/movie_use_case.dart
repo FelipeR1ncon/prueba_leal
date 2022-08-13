@@ -11,7 +11,6 @@ import '../../model/entity/movie/movie_availability.dart';
 class MovieUseCase implements MovieUseCasePort {
   final MovieRepositoryPort _movieRepositoryPort;
 
-
   ///List para guardar las peliculas favoritas que elija al usuario
   ///ya que este caso de uso singleton y no requerir que se persistan
   ///la almacenamos en esta variable pera que se guarde durante la ejecucion de la app
@@ -82,5 +81,10 @@ class MovieUseCase implements MovieUseCasePort {
   @override
   Future<Movie> getDetails(Movie movie) {
     return _movieRepositoryPort.getDetail(movie);
+  }
+
+  @override
+  void deleteFavorite(Movie movie) {
+    _favoriteMovies.remove(movie);
   }
 }

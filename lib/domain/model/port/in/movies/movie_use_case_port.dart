@@ -21,4 +21,5 @@ abstract class MovieUseCasePort {
   List<Movie> getFavorites();
 
   void addFavorite(Movie movie);
+  void deleteFavorite(Movie movie);
 }

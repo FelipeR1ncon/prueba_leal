@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 class Episode {
+  final int id;
   final int episodeNumber;
   final String name;
   final double voteAverage;
@@ -9,8 +10,16 @@ class Episode {
   final String airDate;
   final String stillPath;
 
+  getStarring() {
+    if (guestStart.isEmpty) {
+      return "";
+    }
+    return "${guestStart.values.reduce((value, element) => "$value,$element")}.";
+  }
+
   Episode(
-      {required this.episodeNumber,
+      {required this.id,
+      required this.episodeNumber,
       required this.name,
       required this.voteAverage,
       required this.overview,

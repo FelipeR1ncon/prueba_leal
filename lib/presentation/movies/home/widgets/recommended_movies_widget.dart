@@ -1,8 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:prueba_leal/di/injection.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
 import 'package:prueba_leal/presentation/movies/detail/detail_movie.dart';
+import 'package:prueba_leal/presentation/movies/episode/cubit/detail_episode_cubit.dart';
+import 'package:prueba_leal/presentation/movies/episode/detail_episode_page.dart';
 import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/style/text_style.dart';
@@ -149,7 +152,11 @@ class RecommendedMoviesWidget extends StatelessWidget {
                                           child: FilledButton(
                                               text: "Watch Now",
                                               height: 30,
-                                              onPressed: () {}),
+                                              onPressed: () {
+                                                goToEpisodes(
+                                                    recommendedMovies[index],
+                                                    context);
+                                              }),
                                         ),
                                       ),
                                       Container(
@@ -188,6 +195,17 @@ class RecommendedMoviesWidget extends StatelessWidget {
                 }),
           )
         ],
+      ),
+    );
+  }
+
+  void goToEpisodes(Movie recommendedMovi, BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailEpisodePage(
+            movie: recommendedMovi,
+            detailSeasonCubit: sl<DetailEpisodeCubit>()),
       ),
     );
   }

@@ -40,6 +40,7 @@ class MovieRepository implements MovieRepositoryPort {
     }
 
     return Episode(
+        id: episodeData.id,
         airDate: episodeData.airDate,
         name: episodeData.name,
         episodeNumber: episodeData.episodeNumber,
@@ -111,7 +112,8 @@ class MovieRepository implements MovieRepositoryPort {
     movie.totalSeasons = detailResponse.totalSeasons;
     movie.lastEpisodeToAir = LastEpisodeToAir(
         detailResponse.lastEpisodeToAirRespone.numberEpisode,
-        detailResponse.lastEpisodeToAirRespone.seasonNumber);
+        detailResponse.lastEpisodeToAirRespone.seasonNumber,
+        detailResponse.id);
 
     return movie;
   }

@@ -3,9 +3,8 @@ import 'dart:convert';
 
 import '../../../datasource_port/movies/rest_response/guest_start.dart';
 
-
-
 class EpisodeResponse {
+  final int id;
   final int episodeNumber;
   final String name;
   final double voteAverage;
@@ -15,7 +14,8 @@ class EpisodeResponse {
   final String stillPath;
 
   EpisodeResponse(
-      {required this.episodeNumber,
+      {required this.id,
+      required this.episodeNumber,
       required this.name,
       required this.voteAverage,
       required this.overview,
@@ -25,17 +25,18 @@ class EpisodeResponse {
 
   factory EpisodeResponse.fromMap(Map<String, dynamic> map) {
     return EpisodeResponse(
+      id: map['id'] as int,
       episodeNumber: map['episode_number'] as int,
       name: map['name'] as String,
       voteAverage: map['vote_average'] as double,
-      overview: map['overview'] as String,
+      overview: map['overview'] as String? ?? "",
       guestStart: List<GuestStartResponse>.from(
         (map['guest_stars'] as Iterable).map<GuestStartResponse>(
           (x) => GuestStartResponse.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      airDate: map['air_date'] as String,
-      stillPath: map['still_path'] as String,
+      airDate: map['air_date'] as String? ?? "",
+      stillPath: map['still_path'] as String? ?? "",
     );
   }
 
