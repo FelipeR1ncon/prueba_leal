@@ -1,14 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, prefer_final_fields
+import 'dart:async';
+
 import 'package:prueba_leal/domain/model/entity/movie/episode.dart';
 import 'package:prueba_leal/domain/model/entity/movie/movie.dart';
 import 'package:prueba_leal/domain/model/entity/movie/season.dart';
 import 'package:prueba_leal/domain/model/port/in/movies/movie_use_case_port.dart';
 import 'package:prueba_leal/domain/model/port/out/movies/movie_repository_port.dart';
+import 'package:rxdart/subjects.dart';
 
 import '../../model/entity/movie/movie_availability.dart';
 
 ///Caso de uso encargo de realizar las operaciones con el dominiio de peliculas.
 class MovieUseCase implements MovieUseCasePort {
+  final _controller = BehaviorSubject<List<Movie>>();
+
   final MovieRepositoryPort _movieRepositoryPort;
 
   ///List para guardar las peliculas favoritas que elija al usuario
@@ -17,6 +22,13 @@ class MovieUseCase implements MovieUseCasePort {
   late List<Movie> _favoriteMovies;
 
   MovieUseCase(this._movieRepositoryPort) : _favoriteMovies = [];
+
+  ///Este metodo utiliza cuando se cierra sesion para limpiar cualquier dato que
+  ///este asociado con la sesion del usuario
+  @override
+  clearData() {
+    _favoriteMovies.clear();
+  }
 
   ///Metodo que le permite al usuario seleccionar una pelicula como favorita
   @override
@@ -30,25 +42,26 @@ class MovieUseCase implements MovieUseCasePort {
     if (isNew) {
       _favoriteMovies.add(movie);
     }
+    addToStream(_favoriteMovies);
   }
 
-  ///Este metodo utiliza cuando se cierra sesion para limpiar cualquier dato que
-  ///este asociado con la sesion del usuario
   @override
-  clearData() {
-    _favoriteMovies.clear();
+  void deleteFavorite(Movie movie) {
+    _favoriteMovies.remove(movie);
+    addToStream(_favoriteMovies);
+  }
+
+  /// @return los favoritos asociados durante la sesion.
+  @override
+  List<Movie> getFavorites() {
+    addToStream(_favoriteMovies);
+    return _favoriteMovies;
   }
 
   ///Metodo que obtiene la informacion de un episodeo en especifico
   @override
   Future<Episode> getEpisode(int idMovie, int numSeason, int numEpisode) {
     return _movieRepositoryPort.getEpisode(idMovie, numSeason, numEpisode);
-  }
-
-  /// @return los favoritos asociados durante la sesion.
-  @override
-  List<Movie> getFavorites() {
-    return _favoriteMovies;
   }
 
   ///@List<Movie> correspondientes a la [page] con las mas series mas populares del momento.
@@ -84,7 +97,8 @@ class MovieUseCase implements MovieUseCasePort {
   }
 
   @override
-  void deleteFavorite(Movie movie) {
-    _favoriteMovies.remove(movie);
-  }
+  void addToStream(List<Movie> items) => _controller.sink.add(items);
+
+  @override
+  Stream<List<Movie>> get items => _controller.stream.asBroadcastStream();
 }

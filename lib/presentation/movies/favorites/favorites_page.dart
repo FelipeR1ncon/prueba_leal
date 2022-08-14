@@ -10,7 +10,6 @@ import 'package:prueba_leal/presentation/movies/episode/detail_episode_page.dart
 import 'package:prueba_leal/presentation/movies/favorites/cubit/favorites_cubit.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/widgets/fille_button.dart';
-import 'package:prueba_leal/presentation/shared/widgets/image_blur.dart';
 import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/app_bar.dart';
 import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/cubit/app_bar_cubit.dart';
 import 'package:prueba_leal/presentation/shared/widgets/movie_image_card.dart';

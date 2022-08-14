@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_leal/di/injection.dart';
-import 'package:prueba_leal/presentation/movies/favorites/cubit/favorites_cubit.dart';
 import 'package:prueba_leal/presentation/movies/favorites/favorites_page.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
 import 'package:prueba_leal/presentation/shared/style/color.dart';
