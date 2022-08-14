@@ -13,7 +13,7 @@ class DetailEpisodeCubit extends Cubit<DetailEpisodeState> {
   DetailEpisodeCubit(this._movieUseCasePort)
       : super(const DetailEpisodeState(status: DetailEpisodeStatus.loading));
 
-  ///Carga los episodeos de la primera temporada
+  ///Carga los episodios de la primera temporada
   void getFirstSeason(Movie movie) async {
     try {
       ///Traemos la informacion adicional para saber cuantas temporadas tiene
