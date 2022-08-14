@@ -18,6 +18,8 @@ import 'package:prueba_leal/infrastructure/respository/login/login_repository.da
 import 'package:prueba_leal/infrastructure/respository/movies/movie_repository.dart';
 import 'package:prueba_leal/presentation/login/cubit/login_cubit.dart';
 import 'package:prueba_leal/presentation/movies/episode/cubit/detail_episode_cubit.dart';
+import 'package:prueba_leal/presentation/movies/favorites/cubit/favorites_cubit.dart';
+import 'package:prueba_leal/presentation/movies/favorites/favorites_page.dart';
 import 'package:prueba_leal/presentation/movies/home/cubit/home_cubit.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
 import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/cubit/app_bar_cubit.dart';
@@ -41,6 +43,10 @@ Future<void> setupInjectionDependency() async {
       ));
   sl.registerFactory(() => LoginPage(sl()));
   sl.registerFactory(() => SplashPage(sl()));
+  sl.registerFactory(() => FavoritesPage(
+        sl(),
+        sl(),
+      ));
 
   ////////// Cubits /////////////
   sl.registerFactory<HomeCubit>(() => HomeCubit(sl()));
@@ -48,6 +54,7 @@ Future<void> setupInjectionDependency() async {
   sl.registerFactory<AppBarCubit>(() => AppBarCubit(sl()));
   sl.registerFactory<SplashCubit>(() => SplashCubit(sl()));
   sl.registerFactory<DetailEpisodeCubit>(() => DetailEpisodeCubit(sl()));
+  sl.registerFactory<FavoritesCubit>(() => FavoritesCubit(sl()));
 
   ///////// Use cases //////////
 

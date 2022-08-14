@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prueba_leal/di/injection.dart';
 import 'package:prueba_leal/presentation/login/login_page.dart';
 import 'package:prueba_leal/presentation/movies/home/home_page.dart';
+import 'package:prueba_leal/presentation/navigation/navigation.dart';
 import 'package:prueba_leal/presentation/splash/cubit/splash_cubit.dart';
 
 class SplashPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class SplashPage extends StatelessWidget {
           ));
 
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => sl<HomePage>()),
+              MaterialPageRoute(builder: (context) => const Navigation()),
               (Route<dynamic> route) => false);
         }
 

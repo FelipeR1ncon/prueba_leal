@@ -8,7 +8,7 @@ class CardMoviewImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         child: Image.network(baseUrl + pathImage, fit: BoxFit.cover));
   }
 }

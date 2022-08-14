@@ -213,7 +213,7 @@ class EpisodeInfoWidget extends StatelessWidget {
                             height: 22,
                           ),
                           Text(
-                            "IMDb ${episode.voteAverage.toStringAsPrecision(2)} | ${episode.airDate.substring(0, 4)} |  $numberSeason Season",
+                            "IMDb ${episode.voteAverage.toStringAsPrecision(2)}  |  ${episode.airDate.substring(0, 4)}  |   $numberSeason Season",
                             style: const TextStyle(
                               color: LocalColor.gris,
                               fontSize: 9,

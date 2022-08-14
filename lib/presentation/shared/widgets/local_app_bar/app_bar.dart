@@ -3,9 +3,11 @@ import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/widgets/local_app_bar/cubit/app_bar_cubit.dart';
 
 class LocalAppBar extends StatelessWidget {
-  const LocalAppBar(this._appBarCubit, {Key? key}) : super(key: key);
+  const LocalAppBar(this._appBarCubit, this.title, {Key? key})
+      : super(key: key);
 
   final AppBarCubit _appBarCubit;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,9 @@ class LocalAppBar extends StatelessWidget {
             Container(
               width: 22,
             ),
-            const Text(
-              "Home",
-              style: TextStyle(color: LocalColor.blanco, fontSize: 16),
+            Text(
+              title,
+              style: const TextStyle(color: LocalColor.blanco, fontSize: 16),
             ),
             GestureDetector(
                 onTap: () => _appBarCubit.closeSesion(context),
