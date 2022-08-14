@@ -55,9 +55,9 @@ class DetailEpisodeCubit extends Cubit<DetailEpisodeState> {
       Season season = state.currentSeason!;
 
       int newNumEpisode = (state.currentEpisode!.episodeNumber) + 1;
-      bool isTheLastEpisode = season.episodes.values.length ==
+      bool isTheLastEpisode = state.movie!.lastEpisodeToAir!.episodeNumber ==
               state.currentEpisode!.episodeNumber + 1 &&
-          currentNumSeason == state.movie!.totalSeasons;
+          currentNumSeason == state.movie!.lastEpisodeToAir!.seasonNumber;
 
       if (!isTheLastEpisode && newNumEpisode > season.episodes.values.length) {
         //Cargamos la informacion de siguiente temporada

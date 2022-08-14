@@ -11,7 +11,6 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._movieUseCasePort)
       : super(const HomeState(homeStatus: HomeStatus.loading)) {
-    _subscribeToFavoriteStream();
     getInitialMovies();
   }
 
@@ -21,22 +20,38 @@ class HomeCubit extends Cubit<HomeState> {
   ////Se actualizan los favoritos de la lista de recomendados
   void _subscribeToFavoriteStream() {
     _subscription = _movieUseCasePort.items.listen((items) {
-      emit(state.copyWith(homeStatus: HomeStatus.loading));
-      List<Movie> recomendation = state.recommendedMovies!;
+      if (state.recommendedMovies != null && state.popularMovies != null) {
+        emit(state.copyWith(homeStatus: HomeStatus.loading));
+        List<Movie> recomendation = state.recommendedMovies!;
+        List<Movie> popularMovies = state.popularMovies!;
 
-      for (var elementRecomendation in recomendation) {
-        bool isFavorite = false;
-        for (var elementFavorite in items) {
-          if (elementFavorite.id == elementRecomendation.id) {
-            isFavorite = true;
-            break;
+        for (var elementRecomendation in recomendation) {
+          bool isFavorite = false;
+          for (var elementFavorite in items) {
+            if (elementFavorite.id == elementRecomendation.id) {
+              isFavorite = true;
+              break;
+            }
           }
+          elementRecomendation.isFavorite = isFavorite;
         }
-        elementRecomendation.isFavorite = isFavorite;
-      }
 
-      emit(state.copyWith(
-          homeStatus: HomeStatus.success, recommendedMovies: recomendation));
+        for (var elementPopular in popularMovies) {
+          bool isFavorite = false;
+          for (var elementFavorite in items) {
+            if (elementPopular.id == elementFavorite.id) {
+              isFavorite = true;
+              break;
+            }
+          }
+          elementPopular.isFavorite = isFavorite;
+        }
+
+        emit(state.copyWith(
+            homeStatus: HomeStatus.success,
+            recommendedMovies: recomendation,
+            popularMovies: popularMovies));
+      }
     });
   }
 
@@ -62,6 +77,7 @@ class HomeCubit extends Cubit<HomeState> {
           recommendedMovies: recommendedMovies.movies,
           currentPageRecommended: recommendedMovies.page,
           limitPageRecomended: recommendedMovies.totalPages));
+      _subscribeToFavoriteStream();
     } catch (e) {
       state.copyWith(
           homeStatus: HomeStatus.error,
@@ -70,8 +86,12 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  void addFavorite(Movie movie) {
-    _movieUseCasePort.addFavorite(movie);
+  void eventFavorite(Movie movie) {
+    if (movie.isFavorite) {
+      _movieUseCasePort.deleteFavorite(movie);
+    } else {
+      _movieUseCasePort.addFavorite(movie);
+    }
   }
 
   @override

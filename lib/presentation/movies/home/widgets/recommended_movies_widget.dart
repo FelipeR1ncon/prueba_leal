@@ -163,15 +163,21 @@ class RecommendedMoviesWidget extends StatelessWidget {
                                         key: UniqueKey(),
                                         child: recommendedMovies[index]
                                                 .isFavorite
-                                            ? Icon(
-                                                key: UniqueKey(),
-                                                Icons.favorite,
-                                                color: LocalColor.gris,
-                                                size: 38,
+                                            ? GestureDetector(
+                                                onTap: () {
+                                                  homeCubit.eventFavorite(
+                                                      recommendedMovies[index]);
+                                                },
+                                                child: Icon(
+                                                  key: UniqueKey(),
+                                                  Icons.favorite,
+                                                  color: LocalColor.gris,
+                                                  size: 38,
+                                                ),
                                               )
                                             : GestureDetector(
                                                 onTap: () {
-                                                  homeCubit.addFavorite(
+                                                  homeCubit.eventFavorite(
                                                       recommendedMovies[index]);
                                                 },
                                                 child: Icon(

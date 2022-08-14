@@ -182,14 +182,17 @@ class EpisodeInfoWidget extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: SizedBox(
-                        width: double.infinity,
-                        height: MediaQuery.of(context).size.height * 0.28,
-                        child: CardMoviewImage(
-                          pathImage: "w500${episode.stillPath}",
-                        )),
+                  Visibility(
+                    visible: episode.stillPath.isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: SizedBox(
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.28,
+                          child: CardMoviewImage(
+                            pathImage: "w500${episode.stillPath}",
+                          )),
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.08,
