@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
 
           if (state.loginStatus == LoginStatus.success) {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => sl<Navigation>()),
+                MaterialPageRoute(builder: (context) => const Navigation()),
                 (Route<dynamic> route) => false);
           }
         },
