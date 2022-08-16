@@ -6,6 +6,7 @@ import 'package:prueba_leal/presentation/shared/style/color.dart';
 import 'package:prueba_leal/presentation/shared/widgets/fille_button.dart';
 
 import '../../di/injection.dart';
+import '../navigation/navigation.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginCubit _loginCubit;
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
 
           if (state.loginStatus == LoginStatus.success) {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => sl<HomePage>()),
+                MaterialPageRoute(builder: (context) => sl<Navigation>()),
                 (Route<dynamic> route) => false);
           }
         },

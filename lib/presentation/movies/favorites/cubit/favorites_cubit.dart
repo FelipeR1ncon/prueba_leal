@@ -9,17 +9,23 @@ part 'favorites_state.dart';
 
 class FavoritesCubit extends Cubit<FavoritesState> {
   FavoritesCubit(this._movieUseCasePort)
-      : super(const FavoritesState(status: FavoritesStatus.success)) {
+      : super(const FavoritesState(status: FavoritesStatus.loading)) {
     getFavorites();
   }
+
   final MovieUseCasePort _movieUseCasePort;
   late final StreamSubscription _subscription;
 
   ///Actualiza los favoritos cuando se cambian en el home o en la pagina de episodeos
   void _subscribe() {
     _subscription = _movieUseCasePort.items.listen((items) {
-      emit(state.copyWith(
-          status: FavoritesStatus.success, favoriteMovie: items));
+      if (items.isNotEmpty) {
+        emit(state.copyWith(
+            status: FavoritesStatus.success, favoriteMovie: items));
+      }else{
+        emit(state.copyWith(
+            status: FavoritesStatus.empty));
+      }
     });
   }
 
